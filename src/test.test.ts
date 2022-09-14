@@ -5,6 +5,7 @@ describe("test hex to rgb", () => {
   it("read dir test", () => {
     const config = {
       extensionsAllowed: ["*"],
+      direction: "hexToRgb",
     };
     const res = readDir("./test", false, config, "hexToRgb")[0];
     const match1 = `color: "rgb(0, 0, 0)`;
@@ -16,6 +17,7 @@ describe("test hex to rgb", () => {
   it("read dir test fails", () => {
     const config = {
       extensionsAllowed: [".ts"],
+      direction: "hexToRgb",
     };
     const res = readDir("./test", false, config, "hexToRgb")[0];
     expect(res).toBe(undefined);
@@ -34,6 +36,7 @@ describe("test rgb to hex", () => {
   it("read dir test", () => {
     const config = {
       extensionsAllowed: ["*"],
+      direction: "rgbToHex",
     };
     const res = readDir("./test", false, config, "rgbToHex")[0];
     const match1 = `color: "#000000"`;

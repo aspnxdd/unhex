@@ -13,8 +13,8 @@ export function readDir(
   return fs.readdirSync(dir).map((file) => {
     const extension = file.split(".").pop();
     if (
-      conf.extensionsAllowed.includes(`.${extension}`) ||
-      conf.extensionsAllowed.includes("*")
+      conf.extensionsAllowed.includes("*") ||
+      conf.extensionsAllowed.includes(`.${extension}`)
     ) {
       return parseFile(`${dir}/${file}`, writeFile, direction);
     }
