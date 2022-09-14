@@ -11,3 +11,12 @@ export function hexToRGB6(hex: string) {
   const b = parseInt(hex.slice(5, 7), 16);
   return `rgb(${r}, ${g}, ${b})`;
 }
+
+export function RGBToHex(rgb: string) {
+  const [r, g, b] = rgb
+    .replace("rgb(", "")
+    .replace(")", "")
+    .split(",")
+    .map((n) => parseInt(n));
+  return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
+}
