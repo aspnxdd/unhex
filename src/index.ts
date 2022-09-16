@@ -1,6 +1,6 @@
 import fs from "fs";
 import { hexToRGB3, hexToRGB6, RGBToHex } from "./utils";
-import { config } from "./hexconfig";
+import { config } from "./../hex.config";
 
 type Direction = "hexToRgb" | "rgbToHex";
 
