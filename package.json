@@ -5,13 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "npx vitest",
-    "start": "tsc --build tsconfig.json && node dist/index.js"
+    "start": "tsc --build tsconfig.json && node dist/src/index.js",
+    "cli": "tsc --build tsconfig.json && node dist/src/cli.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/inquirer": "^9.0.1",
     "@types/node": "^18.7.18",
     "typescript": "^4.8.3",
     "vitest": "0.23.2"
+  },
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "inquirer": "^8.0.0"
   }
 }
