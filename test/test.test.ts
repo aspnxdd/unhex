@@ -1,11 +1,12 @@
 import { it, describe, expect } from "vitest";
-import { readDir, parseFile } from "./index";
+import { readDir, parseFile } from "../src/index";
 
 describe("test hex to rgb", () => {
   it("read dir test", () => {
     const config = {
       extensionsAllowed: ["*"],
       direction: "hexToRgb",
+      ignoredFilesAndPaths: ["node_modules", ".git"],
     };
     const res = readDir("./test", false, config, "hexToRgb")[0];
     const match1 = `color: "rgb(0, 0, 0)`;
@@ -18,6 +19,7 @@ describe("test hex to rgb", () => {
     const config = {
       extensionsAllowed: [".ts"],
       direction: "hexToRgb",
+      ignoredFilesAndPaths: ["node_modules", ".git"],
     };
     const res = readDir("./test", false, config, "hexToRgb")[0];
     expect(res).toBe(undefined);
@@ -37,9 +39,11 @@ describe("test rgb to hex", () => {
     const config = {
       extensionsAllowed: ["*"],
       direction: "rgbToHex",
+      ignoredFilesAndPaths: ["node_modules", ".git"],
     };
     const res = readDir("./test", false, config, "rgbToHex")[0];
-    const match1 = `color: "#000000"`;
+    console.log(1,res)
+    const match1 = `color: "#000"`;
     expect(res).include(match1);
   });
 });

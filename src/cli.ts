@@ -4,7 +4,7 @@ const chalk = require("chalk");
 
 const CONFIG_FILENAME = "./hex.config.js";
 
-(async () => {
+export async function cli() {
   try {
     const actualConfig = fs.readFileSync(CONFIG_FILENAME, "utf8");
     if (actualConfig) {
@@ -27,7 +27,7 @@ const CONFIG_FILENAME = "./hex.config.js";
   } catch {
     await ask();
   }
-})();
+}
 
 async function ask() {
   const extensionsAllowed = await askExtensions();
@@ -52,11 +52,6 @@ async function askExtensions() {
   let extensions = new Set<string>();
   while (!done) {
     const extension = await getExtensions();
-    if (extensions.size === 0 || extension !== "--") {
-      extensions.add(extension);
-    } else {
-      extensions.add(extension);
-    }
     if (extension === "--" || extension === "*") {
       done = true;
     }
