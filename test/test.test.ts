@@ -4,9 +4,9 @@ import { readDir, parseFile } from "../src/index";
 describe("test hex to rgb", () => {
   it("read dir test", () => {
     const config = {
-      extensionsAllowed: ["*"],
+      extensionsAllowed: "*",
       direction: "hexToRgb",
-      ignoredFilesAndPaths: ["node_modules", ".git"],
+      ignoredFilesAndPaths: "node_modules, .git",
     };
     const res = readDir("./test", false, config, "hexToRgb")[0];
     const match1 = `color: "rgb(0, 0, 0)`;
@@ -17,9 +17,9 @@ describe("test hex to rgb", () => {
 
   it("read dir test fails", () => {
     const config = {
-      extensionsAllowed: [".ts"],
+      extensionsAllowed: "*",
       direction: "hexToRgb",
-      ignoredFilesAndPaths: ["node_modules", ".git"],
+      ignoredFilesAndPaths: "node_modules, .git",
     };
     const res = readDir("./test", false, config, "hexToRgb")[0];
     expect(res).toBe(undefined);
@@ -37,13 +37,13 @@ describe("test hex to rgb", () => {
 describe("test rgb to hex", () => {
   it("read dir test", () => {
     const config = {
-      extensionsAllowed: ["*"],
-      direction: "rgbToHex",
-      ignoredFilesAndPaths: ["node_modules", ".git"],
+      extensionsAllowed: "*",
+      direction: "hexToRgb",
+      ignoredFilesAndPaths: "node_modules, .git",
     };
     const res = readDir("./test", false, config, "rgbToHex")[0];
-    console.log(1,res)
-    const match1 = `color: "#000"`;
+    console.log(1, res);
+    const match1 = `color: "rgb(0, 0, 0)"`;
     expect(res).include(match1);
   });
 });

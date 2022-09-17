@@ -1,15 +1,24 @@
+#!/usr/bin/env node
 import fs from "fs";
 import { hexToRGB3, hexToRGB6, RGBToHex } from "./utils";
-import { config } from "./../hex.config";
+import { config } from "../unhex.config";
 import { cli } from "./cli";
 
 type Direction = "hexToRgb" | "rgbToHex";
 
+interface Config {
+  extensionsAllowed?: string;
+  direction: Direction;
+  ignoredFilesAndPaths?: string;
+}
+
 async function main() {
+  await cli();
   readDir("./", true, config, "hexToRgb");
 }
 
 main();
+
 
 export function readDir(
   dir: string,
@@ -20,13 +29,14 @@ export function readDir(
   return fs.readdirSync(dir).map((file) => {
     const isDir = fs.existsSync(file) && fs.lstatSync(file).isDirectory();
     if (isDir) {
-      if (config.ignoredFilesAndPaths.includes(file)) return;
+      if ((conf as Config).ignoredFilesAndPaths?.split(", ").includes(file))
+        return;
       readDir(file, writeFile, conf, direction);
     } else {
       const extension = file.split(".").pop();
       if (
-        conf.extensionsAllowed.includes("*") ||
-        conf.extensionsAllowed.includes(`.${extension}`)
+        conf.extensionsAllowed?.includes("*") ||
+        conf.extensionsAllowed?.includes(`.${extension}`)
       ) {
         return parseFile(`${dir}/${file}`, writeFile, direction);
       }
