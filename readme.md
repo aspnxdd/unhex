@@ -1,4 +1,4 @@
-# Unhex :palette:
+# Unhex 🎨
 
 A NodeJS package to convert any RGB color to HEX color or viceversa.
 
