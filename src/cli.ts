@@ -2,11 +2,11 @@ import fs from "fs";
 const inquirer = require("inquirer");
 const chalk = require("chalk");
 
-const CONFIG_FILENAME = "./unhex.config.js";
+const CONFIG_FILENAME = "unhex.config.js";
 
 export async function cli() {
   try {
-    const actualConfig = fs.readFileSync(CONFIG_FILENAME, "utf8");
+    const actualConfig = fs.readdirSync("./", "utf8").find((file) => file === CONFIG_FILENAME);
     if (!actualConfig) return;
     const actualExtensionsAllowed = actualConfig
       .split("extensionsAllowed: [")[1]
@@ -45,7 +45,7 @@ async function ask() {
   console.log(chalk.blue("Ignored files selected: ", ignoredFilesAndPaths));
 
   fs.writeFileSync(
-    CONFIG_FILENAME,
+    `./${CONFIG_FILENAME}`,
     `export const config = {
           extensionsAllowed: "${extensionsAllowed}",
           direction: "${direction}",
