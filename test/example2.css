@@ -3,6 +3,6 @@ div {
 }
 
 .title a {
-  color: #0070f3;
+  color: hwb(212 0% 5%);
   text-decoration: none;
 }

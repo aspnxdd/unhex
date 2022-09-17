@@ -19,8 +19,7 @@ export function readDir(
   conf = config as Config
 ) {
   return fs.readdirSync(dir).map((file) => {
-    if ((conf as Config).ignoredFilesAndPaths?.split(", ").includes(file))
-      return;
+    if (conf.ignoredFilesAndPaths?.split(", ").includes(file)) return;
     const path = join(dir, file);
     const isDir = fs.existsSync(path) && fs.lstatSync(path).isDirectory();
     if (isDir) {

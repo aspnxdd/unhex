@@ -1,12 +1,12 @@
 import fs from "fs";
 import { join } from "path";
-import type { Config } from "./types";
+import type { Config, Direction } from "./types";
 const inquirer = require("inquirer");
 const chalk = require("chalk");
 
 const CONFIG_FILENAME = "unhex.config.js";
 
-export async function cli() {
+export async function cli(): Promise<Config> {
   try {
     const actualConfig = require(join(
       process.cwd(),
@@ -14,19 +14,15 @@ export async function cli() {
     )) as Config;
     console.log("actualConfig", actualConfig);
     if (actualConfig) {
-      const replaceConfig = await askReplaceConfig({
+      const shouldReplaceConfig = await askReplaceConfig({
         actualExtensionsAllowed: actualConfig.extensionsAllowed,
         actualDirection: actualConfig.direction,
         actualIgnoredFilesAndPaths: actualConfig.ignoredFilesAndPaths,
       });
-      console.log({ replaceConfig });
-      if (!replaceConfig) return actualConfig;
-      return await ask();
-    } else {
-      return await ask();
+      if (!shouldReplaceConfig) return actualConfig;
     }
-  } catch (err) {
-    console.log(err);
+    return await ask();
+  } catch {
     return await ask();
   }
 }
@@ -63,7 +59,7 @@ async function ask(): Promise<Config> {
   };
 }
 
-async function askExtensions() {
+async function askExtensions(): Promise<string> {
   let done = false;
   let extensions = new Set<string>();
   while (!done) {
@@ -79,7 +75,7 @@ async function askExtensions() {
   return [...extensions].join(", ");
 }
 
-async function askDirection() {
+async function askDirection(): Promise<Direction> {
   const { direction } = await inquirer.prompt({
     name: "direction",
     type: "list",
@@ -92,7 +88,7 @@ async function askDirection() {
   return direction;
 }
 
-async function askIgnoredFilesAndPaths() {
+async function askIgnoredFilesAndPaths(): Promise<string> {
   const { ignoredFilesAndPaths } = await inquirer.prompt({
     name: "ignoredFilesAndPaths",
     type: "input",
@@ -110,18 +106,18 @@ async function askReplaceConfig({
   actualDirection,
   actualIgnoredFilesAndPaths,
 }: {
-  actualExtensionsAllowed?: string;
-  actualDirection?: string;
-  actualIgnoredFilesAndPaths?: string;
-}) {
+  actualExtensionsAllowed: string;
+  actualDirection: Direction;
+  actualIgnoredFilesAndPaths: string;
+}): Promise<boolean> {
   try {
     const actualConfig = {
       actualExtensionsAllowed,
       actualDirection,
       actualIgnoredFilesAndPaths,
     };
-    const { replaceConfig } = await inquirer.prompt({
-      name: "replaceConfig",
+    const { shouldReplaceConfig } = await inquirer.prompt({
+      name: "shouldReplaceConfig",
       type: "confirm",
       message: `Config file found.\n ${JSON.stringify(
         actualConfig,
@@ -129,18 +125,19 @@ async function askReplaceConfig({
         2
       )} \n Do you want to replace it?`,
     });
-    return replaceConfig;
+    return shouldReplaceConfig;
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    return false;
   }
 }
 
-async function getExtensions() {
+async function getExtensions(): Promise<string> {
   const { extension } = await inquirer.prompt({
     name: "extension",
     type: "list",
     message: "File extensions to convert",
-    choices: ["*", ".css", ".jsx", ".tsx", ".scss", ".sass", ".less", "--"],
+    choices: ["*", ".css", ".jsx", ".tsx", ".scss", ".svelte", ".vue", "--"],
     default() {
       return "*";
     },

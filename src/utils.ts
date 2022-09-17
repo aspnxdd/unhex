@@ -1,18 +1,18 @@
-export function hexToRGB3(hex: string) {
+export function hexToRGB3(hex: string): string {
   const r = parseInt(hex.slice(1, 2), 16);
   const g = parseInt(hex.slice(2, 3), 16);
   const b = parseInt(hex.slice(3, 4), 16);
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-export function hexToRGB6(hex: string) {
+export function hexToRGB6(hex: string): string {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
   const b = parseInt(hex.slice(5, 7), 16);
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-export function RGBToHex(rgb: string) {
+export function RGBToHex(rgb: string): string {
   const [r, g, b] = rgb
     .replace("rgb(", "")
     .replace(")", "")

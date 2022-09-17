@@ -1,7 +1,24 @@
 {
   "name": "unhex",
-  "version": "0.0.2386",
+  "version": "0.0.31",
   "description": "Color converter RGB <--> HEX",
+  "keywords": [
+    "color",
+    "parser",
+    "converter",
+    "rgb",
+    "hex"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/aspnxdd/unhex.git"
+  },
+  "bugs": {
+    "url": "http://github.com/aspnxdd/unhex.git/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/src/index.js",
   "scripts": {
     "test": "npx vitest",

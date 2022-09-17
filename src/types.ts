@@ -1,7 +1,7 @@
 export type Direction = "hexToRgb" | "rgbToHex";
 
 export interface Config {
-  extensionsAllowed?: string;
+  extensionsAllowed: string;
   direction: Direction;
-  ignoredFilesAndPaths?: string;
+  ignoredFilesAndPaths: string;
 }

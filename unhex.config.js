@@ -1,5 +1,5 @@
 module.exports = {
-          extensionsAllowed: "*",
-          direction: "rgbToHex",
-          ignoredFilesAndPaths: "node_modules, .git, .vscode, dist, build"
-      };
+  extensionsAllowed: "*",
+  direction: "rgbToHex",
+  ignoredFilesAndPaths: "node_modules, .git, .vscode, dist, build, .gitignore",
+};
