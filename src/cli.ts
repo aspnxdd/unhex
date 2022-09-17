@@ -1,39 +1,43 @@
 import fs from "fs";
+import { join } from "path";
 const inquirer = require("inquirer");
 const chalk = require("chalk");
+type Direction = "hexToRgb" | "rgbToHex";
+
+interface Config {
+  extensionsAllowed?: string;
+  direction: Direction;
+  ignoredFilesAndPaths?: string;
+}
 
 const CONFIG_FILENAME = "unhex.config.js";
 
 export async function cli() {
   try {
-    const actualConfig = fs.readdirSync("./", "utf8").find((file) => file === CONFIG_FILENAME);
-    if (!actualConfig) return;
-    const actualExtensionsAllowed = actualConfig
-      .split("extensionsAllowed: [")[1]
-      .split("],")[0]
-      .replaceAll(`"`, ``);
-    const actualDirection = actualConfig
-      .split("direction: ")[1]
-      .split(",")[0]
-      .split('"')[1];
-    const actualIgnoredFilesAndPaths = actualConfig
-      .split("ignoredFilesAndPaths: [")[1]
-      .split("]")[0]
-      .replaceAll(`"`, ``);
-    console.log({ actualIgnoredFilesAndPaths });
-    const replaceConfig = await askReplaceConfig({
-      actualExtensionsAllowed: `[${actualExtensionsAllowed}]`,
-      actualDirection,
-      actualIgnoredFilesAndPaths: `[${actualIgnoredFilesAndPaths}]`,
-    });
-    if (!replaceConfig) return;
-    await ask();
-  } catch {
-    await ask();
+    const actualConfig = require(join(
+      process.cwd(),
+      CONFIG_FILENAME
+    )) as Config;
+    console.log("actualConfig", actualConfig);
+    if (actualConfig) {
+      const replaceConfig = await askReplaceConfig({
+        actualExtensionsAllowed: actualConfig.extensionsAllowed,
+        actualDirection: actualConfig.direction,
+        actualIgnoredFilesAndPaths: actualConfig.ignoredFilesAndPaths,
+      });
+      console.log({ replaceConfig });
+      if (!replaceConfig) return actualConfig;
+      return await ask();
+    } else {
+      return await ask();
+    }
+  } catch (err) {
+    console.log(err);
+    return await ask();
   }
 }
 
-async function ask() {
+async function ask(): Promise<Config> {
   const extensionsAllowed = await askExtensions();
   const direction = await askDirection();
   const ignoredFilesAndPaths = await askIgnoredFilesAndPaths();
@@ -45,8 +49,8 @@ async function ask() {
   console.log(chalk.blue("Ignored files selected: ", ignoredFilesAndPaths));
 
   fs.writeFileSync(
-    `./${CONFIG_FILENAME}`,
-    `export const config = {
+    join(process.cwd(), CONFIG_FILENAME),
+    `module.exports = {
           extensionsAllowed: "${extensionsAllowed}",
           direction: "${direction}",
           ignoredFilesAndPaths: "${ignoredFilesAndPaths}"
@@ -58,6 +62,11 @@ async function ask() {
       "Configuration file created! You can edit this file manually as unhex.config.js on this directory"
     )
   );
+  return {
+    extensionsAllowed,
+    direction,
+    ignoredFilesAndPaths,
+  };
 }
 
 async function askExtensions() {
@@ -107,25 +116,29 @@ async function askReplaceConfig({
   actualDirection,
   actualIgnoredFilesAndPaths,
 }: {
-  actualExtensionsAllowed: string;
-  actualDirection: string;
-  actualIgnoredFilesAndPaths: string;
+  actualExtensionsAllowed?: string;
+  actualDirection?: string;
+  actualIgnoredFilesAndPaths?: string;
 }) {
-  const actualConfig = {
-    actualExtensionsAllowed,
-    actualDirection,
-    actualIgnoredFilesAndPaths,
-  };
-  const { replaceConfig } = await inquirer.prompt({
-    name: "replaceConfig",
-    type: "confirm",
-    message: `Config file found.\n ${JSON.stringify(
-      actualConfig,
-      null,
-      2
-    )} \n Do you want to replace it?`,
-  });
-  return replaceConfig;
+  try {
+    const actualConfig = {
+      actualExtensionsAllowed,
+      actualDirection,
+      actualIgnoredFilesAndPaths,
+    };
+    const { replaceConfig } = await inquirer.prompt({
+      name: "replaceConfig",
+      type: "confirm",
+      message: `Config file found.\n ${JSON.stringify(
+        actualConfig,
+        null,
+        2
+      )} \n Do you want to replace it?`,
+    });
+    return replaceConfig;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 async function getExtensions() {

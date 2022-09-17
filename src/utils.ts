@@ -17,6 +17,10 @@ export function RGBToHex(rgb: string) {
     .replace("rgb(", "")
     .replace(")", "")
     .split(",")
-    .map((n) => parseInt(n));
+    .map((n) => {
+      const e = parseInt(n);
+      return e.toString().length === 1 ? `${e}${e}` : e;
+    });
+
   return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
 }

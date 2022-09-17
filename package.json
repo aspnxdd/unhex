@@ -1,13 +1,13 @@
 {
   "name": "unhex",
-  "version": "0.0.23",
+  "version": "0.0.2386",
   "description": "Color converter RGB <--> HEX",
   "main": "dist/src/index.js",
   "scripts": {
     "test": "npx vitest",
     "start": "tsc --build tsconfig.json && node dist/src/index.js",
     "cli": "tsc --build tsconfig.json && node dist/src/cli.js",
-    "publish": "tsc --build tsconfig.json && npm publish"
+    "prepublish": "tsc --build tsconfig.json && npm publish"
   },
   "author": "Arnau Espin <arnauespin@gmail.com>",
   "license": "MIT",

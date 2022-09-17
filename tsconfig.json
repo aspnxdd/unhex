@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2022" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    "module": "commonjs" /* Specify what module code is generated. */,
+    "target": "ES2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "module": "Node16" /* Specify what module code is generated. */,
     "rootDir": "." /* Specify the root folder within your source files. */,
     "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
     "outDir": "./dist/" /* Specify an output folder for all emitted files. */,
@@ -10,5 +10,6 @@
     "strict": true /* Enable all strict type-checking options. */,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node" 
   }
 }
