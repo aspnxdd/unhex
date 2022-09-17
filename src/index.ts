@@ -4,14 +4,7 @@ import { hexToRGB3, hexToRGB6, RGBToHex } from "./utils";
 import config from "../unhex.config";
 import { cli } from "./cli";
 import { join } from "path";
-
-type Direction = "hexToRgb" | "rgbToHex";
-
-interface Config {
-  extensionsAllowed?: string;
-  direction: Direction;
-  ignoredFilesAndPaths?: string;
-}
+import type { Config, Direction } from "./types";
 
 async function main() {
   const conf = await cli();
@@ -60,7 +53,6 @@ export function parseFile(
   }
   if (direction === "rgbToHex") {
     const newData = data.replace(/rgb\([0-9, ]+\)/g, (rgb) => {
-      console.log({ rgb });
       return RGBToHex(rgb);
     });
     writeFile && fs.writeFileSync(`${fileName}`, newData);

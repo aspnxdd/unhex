@@ -1,12 +1,7 @@
 import { it, describe, expect } from "vitest";
 import { readDir, parseFile } from "../src/index";
-type Direction = "hexToRgb" | "rgbToHex";
+import type { Config } from "./../src/types";
 
-interface Config {
-  extensionsAllowed?: string;
-  direction: Direction;
-  ignoredFilesAndPaths?: string;
-}
 describe("test hex to rgb", () => {
   it("read dir test", () => {
     const config: Config = {

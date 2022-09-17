@@ -1,14 +1,8 @@
 import fs from "fs";
 import { join } from "path";
+import type { Config } from "./types";
 const inquirer = require("inquirer");
 const chalk = require("chalk");
-type Direction = "hexToRgb" | "rgbToHex";
-
-interface Config {
-  extensionsAllowed?: string;
-  direction: Direction;
-  ignoredFilesAndPaths?: string;
-}
 
 const CONFIG_FILENAME = "unhex.config.js";
 
@@ -104,7 +98,7 @@ async function askIgnoredFilesAndPaths() {
     type: "input",
     message: "Ignore files/paths",
     default() {
-      return "node_modules, .git, .vscode, dist, build";
+      return "node_modules, .git, .vscode, dist, build, .next, .gitignore";
     },
   });
   console.log(chalk.blue("Ignored files selected: ", ignoredFilesAndPaths));
