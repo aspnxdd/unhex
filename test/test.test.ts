@@ -43,6 +43,18 @@ describe("test parsing files", () => {
     const match1 = `color: "rgb(0, 0, 0)";`;
     expect(res).include(match1);
   });
+
+  it("parse file test hslToHex", () => {
+    const res = parseFile("./test/example4.css", false, "hslToHex");
+    const match1 = `color: "#000000";`;
+    expect(res).include(match1);
+  });
+
+  it("parse file test hexToHsl", () => {
+    const res = parseFile("./test/example.css", false, "hexToHsl");
+    const match1 = `color: "hsl(0, 0%, 0%)";`;
+    expect(res).include(match1);
+  });
 });
 
 describe("test rgb to hex", () => {
@@ -82,5 +94,17 @@ describe("text conversion functions", () => {
   it("hsl to rgb", () => {
     const res = HSLToRGB("hsl(0, 0%, 0%)");
     expect(res).toBe("rgb(0, 0, 0)");
+  });
+
+  it("hsl to hex", () => {
+    const res = HSLToRGB("hsl(0, 0%, 0%)");
+    const res2 = RGBToHex(res);
+    expect(res2).toBe("#000000");
+  });
+
+  it("hex to hsl", () => {
+    const res = hexToRGB3("#000");
+    const res2 = RGBToHSL(res);
+    expect(res2).toBe("hsl(0, 0%, 0%)");
   });
 });

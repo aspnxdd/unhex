@@ -79,7 +79,7 @@ async function askDirection(): Promise<Direction> {
     name: "direction",
     type: "list",
     message: "Direction",
-    choices: ["hexToRgb", "rgbToHex", "rgbToHsl", "hslToRgb"],
+    choices: ["hexToRgb", "rgbToHex", "rgbToHsl", "hslToRgb", "hexToHsl", "hslToHex"],
     default() {
       return "hexToRgb";
     },

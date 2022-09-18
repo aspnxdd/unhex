@@ -66,10 +66,31 @@ export function parseFile(
   }
   if (direction === "hslToRgb") {
     const newData = data.replace(/hsl\([0-9%, ]+\)/g, (hsl) => {
-      console.log({ hsl });
       return HSLToRGB(hsl);
     });
     writeFile && fs.writeFileSync(`${fileName}`, newData);
     return newData;
+  }
+
+  if (direction === "hexToHsl") {
+    const newData = data.replace(/#[0-9a-fA-F]{3,6}/g, (hex) => {
+      return hex.length === 4 ? hexToRGB3(hex) : hexToRGB6(hex);
+    });
+    const newData2 = newData.replace(/rgb\([0-9, ]+\)/g, (rgb) => {
+      return RGBToHSL(rgb);
+    });
+    writeFile && fs.writeFileSync(`${fileName}`, newData2);
+    return newData2;
+  }
+
+  if (direction === "hslToHex") {
+    const newData = data.replace(/hsl\([0-9%, ]+\)/g, (hsl) => {
+      return HSLToRGB(hsl);
+    });
+    const newData2 = newData.replace(/rgb\([0-9, ]+\)/g, (rgb) => {
+      return RGBToHex(rgb);
+    });
+    writeFile && fs.writeFileSync(`${fileName}`, newData2);
+    return newData2;
   }
 }
