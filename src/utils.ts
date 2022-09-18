@@ -20,7 +20,6 @@ export function RGBToHex(rgb: string): string {
     .map((n) => {
       return n.trim();
     });
-console.log({r, g, b});
   if (r.length == 1) r = `${r}${r}`;
   if (g.length == 1) g = `${g}${g}`;
   if (b.length == 1) b = `${b}${b}`;

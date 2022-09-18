@@ -24,7 +24,7 @@ describe("test parsing files", () => {
   });
 
   it("parse file test hexToRgb", () => {
-    const res = parseFile("./test/example.css", false, "hexToRgb");
+    const res = parseFile("./test/hex.css", false, "hexToRgb");
     const match1 = `color: "rgb(0, 0, 0)";`;
     const match2 = `background-color: "rgb(0, 0, 0)";`;
     expect(res).include(match1);
@@ -32,32 +32,31 @@ describe("test parsing files", () => {
   });
 
   it("parse file test rgbToHsl", () => {
-    const res = parseFile("./test/example3.css", false, "rgbToHsl");
+    const res = parseFile("./test/rgb.css", false, "rgbToHsl");
     const match1 = `color: "hsl(0, 0%, 0%)";`;
     expect(res).include(match1);
   });
 
   it("parse file test hslToRgb", () => {
-    const res = parseFile("./test/example4.css", false, "hslToRgb");
-    console.log({ res });
+    const res = parseFile("./test/hsl.css", false, "hslToRgb");
     const match1 = `color: "rgb(0, 0, 0)";`;
     expect(res).include(match1);
   });
 
   it("parse file test hslToHex", () => {
-    const res = parseFile("./test/example4.css", false, "hslToHex");
+    const res = parseFile("./test/hsl.css", false, "hslToHex");
     const match1 = `color: "#000000";`;
     expect(res).include(match1);
   });
 
   it("parse file test hexToHsl", () => {
-    const res = parseFile("./test/example.css", false, "hexToHsl");
+    const res = parseFile("./test/hex.css", false, "hexToHsl");
     const match1 = `color: "hsl(0, 0%, 0%)";`;
     expect(res).include(match1);
   });
 });
 
-describe("test rgb to hex", () => {
+describe("test rgb to hex with readDir", () => {
   it("read dir test", () => {
     const config: Config = {
       extensionsAllowed: "*",
@@ -72,39 +71,39 @@ describe("test rgb to hex", () => {
 
 describe("text conversion functions", () => {
   it("hex to rgb", () => {
-    const res = hexToRGB3("#000");
-    expect(res).toBe("rgb(0, 0, 0)");
+    const rgb = hexToRGB3("#000");
+    expect(rgb).toBe("rgb(0, 0, 0)");
   });
 
   it("hex to rgb", () => {
-    const res = hexToRGB6("#000000");
-    expect(res).toBe("rgb(0, 0, 0)");
+    const rgb = hexToRGB6("#000000");
+    expect(rgb).toBe("rgb(0, 0, 0)");
   });
 
   it("rgb to hex", () => {
-    const res = RGBToHex("rgb(0, 0, 0)");
-    expect(res).toBe("#000000");
+    const hex = RGBToHex("rgb(0, 0, 0)");
+    expect(hex).toBe("#000000");
   });
 
   it("rgb to hsl", () => {
-    const res = RGBToHSL("rgb(255, 0, 0)");
-    expect(res).toBe("hsl(0, 100%, 50%)");
+    const hsl = RGBToHSL("rgb(255, 0, 0)");
+    expect(hsl).toBe("hsl(0, 100%, 50%)");
   });
 
   it("hsl to rgb", () => {
-    const res = HSLToRGB("hsl(0, 0%, 0%)");
-    expect(res).toBe("rgb(0, 0, 0)");
+    const rgb = HSLToRGB("hsl(0, 0%, 0%)");
+    expect(rgb).toBe("rgb(0, 0, 0)");
   });
 
   it("hsl to hex", () => {
-    const res = HSLToRGB("hsl(0, 0%, 0%)");
-    const res2 = RGBToHex(res);
-    expect(res2).toBe("#000000");
+    const rgb = HSLToRGB("hsl(0, 0%, 0%)");
+    const hex = RGBToHex(rgb);
+    expect(hex).toBe("#000000");
   });
 
   it("hex to hsl", () => {
-    const res = hexToRGB3("#000");
-    const res2 = RGBToHSL(res);
-    expect(res2).toBe("hsl(0, 0%, 0%)");
+    const rgb = hexToRGB3("#000");
+    const hsl = RGBToHSL(rgb);
+    expect(hsl).toBe("hsl(0, 0%, 0%)");
   });
 });
