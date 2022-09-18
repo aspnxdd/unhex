@@ -1,6 +1,6 @@
 # Unhex 🎨
 
-A NodeJS package to convert any RGB color to HEX color or viceversa.
+A NodeJS package to convert any RGB color to HEX color or viceversa. Also supports HSL conversion.
 
 ### Example
 
@@ -35,7 +35,7 @@ npx unhex
 
 ## TO-DO 🚧
 
-- Support HSL.
-- Support HWB.
+- [X] Support HSL.
+- [ ] Support HWB.
 
 [MIT License](./LICENSE.md)
