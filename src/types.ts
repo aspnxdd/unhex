@@ -1,4 +1,4 @@
-export type Direction = "hexToRgb" | "rgbToHex";
+export type Direction = "hexToRgb" | "rgbToHex" | "rgbToHsl" | "hslToRgb";
 
 export interface Config {
   extensionsAllowed: string;

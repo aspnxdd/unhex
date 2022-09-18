@@ -12,7 +12,6 @@ export async function cli(): Promise<Config> {
       process.cwd(),
       CONFIG_FILENAME
     )) as Config;
-    console.log("actualConfig", actualConfig);
     if (actualConfig) {
       const shouldReplaceConfig = await askReplaceConfig({
         actualExtensionsAllowed: actualConfig.extensionsAllowed,
@@ -80,7 +79,7 @@ async function askDirection(): Promise<Direction> {
     name: "direction",
     type: "list",
     message: "Direction",
-    choices: ["hexToRgb", "rgbToHex"],
+    choices: ["hexToRgb", "rgbToHex", "rgbToHsl", "hslToRgb"],
     default() {
       return "hexToRgb";
     },

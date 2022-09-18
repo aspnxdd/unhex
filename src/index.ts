@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import fs from "fs";
-import { hexToRGB3, hexToRGB6, RGBToHex } from "./utils";
+import { hexToRGB3, hexToRGB6, RGBToHex, HSLToRGB, RGBToHSL } from "./utils";
 import config from "../unhex.config";
 import { cli } from "./cli";
 import { join } from "path";
@@ -53,6 +53,21 @@ export function parseFile(
   if (direction === "rgbToHex") {
     const newData = data.replace(/rgb\([0-9, ]+\)/g, (rgb) => {
       return RGBToHex(rgb);
+    });
+    writeFile && fs.writeFileSync(`${fileName}`, newData);
+    return newData;
+  }
+  if (direction === "rgbToHsl") {
+    const newData = data.replace(/rgb\([0-9, ]+\)/g, (rgb) => {
+      return RGBToHSL(rgb);
+    });
+    writeFile && fs.writeFileSync(`${fileName}`, newData);
+    return newData;
+  }
+  if (direction === "hslToRgb") {
+    const newData = data.replace(/hsl\([0-9%, ]+\)/g, (hsl) => {
+      console.log({ hsl });
+      return HSLToRGB(hsl);
     });
     writeFile && fs.writeFileSync(`${fileName}`, newData);
     return newData;
