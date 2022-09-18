@@ -1,8 +1,8 @@
 import fs from "fs";
 import { join } from "path";
 import type { Config, Direction } from "./types";
-const inquirer = require("inquirer");
-const chalk = require("chalk");
+import inquirer from "inquirer";
+import chalk from "chalk";
 
 const CONFIG_FILENAME = "unhex.config.js";
 
