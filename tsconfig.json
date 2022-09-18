@@ -11,5 +11,6 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "Node" 
-  }
+  },
+  "include": ["src/**/*"],
 }
