@@ -1,8 +1,8 @@
-name: CI - NPM Publish
+name: CI - PR main
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - 'master'
 
 jobs:
   publish-npm:
@@ -27,8 +27,4 @@ jobs:
 
       - name: Run tests
         run: pnpm test
-
-      - name: Publish pkg
-        run: pnpm publish --access=public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+    
