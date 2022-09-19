@@ -25,7 +25,6 @@
     "test": "npx vitest",
     "start": "tsc --build tsconfig.json && node dist/src/index.js",
     "cli": "tsc --build tsconfig.json && node dist/src/cli.js",
-    "prepublish": "tsc --build tsconfig.json && pnpm publish",
     "compile": "tsc --build tsconfig.json"
   },
   "author": "Arnau Espin <arnauespin@gmail.com>",
