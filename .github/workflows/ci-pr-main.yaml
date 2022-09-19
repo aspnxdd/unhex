@@ -10,13 +10,9 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - uses: pnpm/action-setup@v2.0.1
-        name: Install pnpm
-        id: pnpm-install
+      - uses: pnpm/action-setup@v2.2.2
         with:
-          version: 7.1.0
-          run_install: |
-            - recursive: true
+          version: 6.0.2
 
       - name: Compile ts
         run: pnpm compile
