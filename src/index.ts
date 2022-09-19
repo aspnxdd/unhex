@@ -93,4 +93,56 @@ export function parseFile(
     writeFile && fs.writeFileSync(`${fileName}`, newData2);
     return newData2;
   }
+
+  if (direction === "allToRgb") {
+    const hexToRgbData = data.replace(/#[0-9a-fA-F]{3,6}/g, (hex) => {
+      return hex.length === 4 ? hexToRGB3(hex) : hexToRGB6(hex);
+    });
+
+    const hslToRgbData = hexToRgbData.replace(/hsl\([0-9%, ]+\)/g, (hsl) => {
+      return HSLToRGB(hsl);
+    });
+    if (writeFile) {
+      fs.writeFileSync(`${fileName}`, hslToRgbData);
+    }
+    return hslToRgbData;
+  }
+
+  if (direction === "allToHex") {
+    const rgbToHexData = data.replace(/rgb\([0-9, ]+\)/g, (rgb) => {
+      return RGBToHex(rgb);
+    });
+
+    const hslToRgbData = rgbToHexData.replace(/hsl\([0-9%, ]+\)/g, (hsl) => {
+      return HSLToRGB(hsl);
+    });
+
+    const rgbToHexData2 = hslToRgbData.replace(/rgb\([0-9, ]+\)/g, (rgb) => {
+      return RGBToHex(rgb);
+    });
+
+    if (writeFile) {
+      fs.writeFileSync(`${fileName}`, rgbToHexData2);
+    }
+    return rgbToHexData2;
+  }
+
+  if (direction === "allToHsl") {
+    const hexToRgbData = data.replace(/#[0-9a-fA-F]{3,6}/g, (hex) => {
+      return hex.length === 4 ? hexToRGB3(hex) : hexToRGB6(hex);
+    });
+
+    const rgbToHslData = hexToRgbData.replace(/rgb\([0-9, ]+\)/g, (rgb) => {
+      return RGBToHSL(rgb);
+    });
+
+    const hexToRgbData2 = rgbToHslData.replace(/#[0-9a-fA-F]{3,6}/g, (hex) => {
+      return hex.length === 4 ? hexToRGB3(hex) : hexToRGB6(hex);
+    });
+
+    if (writeFile) {
+      fs.writeFileSync(`${fileName}`, hexToRgbData2);
+    }
+    return hexToRgbData2;
+  }
 }

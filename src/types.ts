@@ -4,7 +4,10 @@ export type Direction =
   | "rgbToHsl"
   | "hslToRgb"
   | "hexToHsl"
-  | "hslToHex";
+  | "hslToHex"
+  | "allToRgb"
+  | "allToHex"
+  | "allToHsl";
 
 export interface Config {
   extensionsAllowed: string;

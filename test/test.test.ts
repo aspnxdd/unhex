@@ -54,6 +54,30 @@ describe("test parsing files", () => {
     const match1 = `color: "hsl(0, 0%, 0%)";`;
     expect(res).include(match1);
   });
+
+  it("parse file test allToRgb", () => {
+    const res = parseFile("./test/hexAndHsl.css", false, "allToRgb");
+    const match1 = `color: "rgb(0, 0, 0)";`;
+    const match2 = `background-color: "rgb(0, 0, 0)";`;
+    expect(res).include(match1);
+    expect(res).include(match2);
+  });
+
+  it("parse file test allToHsl", () => {
+    const res = parseFile("./test/hexAndRgb.css", false, "allToHsl");
+    const match1 = `color: "hsl(0, 0%, 0%)";`;
+    const match2 = `background-color: "hsl(0, 0%, 0%)";`;
+    expect(res).include(match1);
+    expect(res).include(match2);
+  });
+
+  it("parse file test allToHex", () => {
+    const res = parseFile("./test/rgbAndHsl.css", false, "allToHex");
+    const match1 = `color: "#000000";`;
+    const match2 = `background-color: "#000000";`;
+    expect(res).include(match1);
+    expect(res).include(match2);
+  });
 });
 
 describe("test rgb to hex with readDir", () => {
