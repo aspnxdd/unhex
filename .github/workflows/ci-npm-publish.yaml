@@ -1,5 +1,4 @@
 name: CI - NPM Publish
-
 on:
   push:
     tags:
