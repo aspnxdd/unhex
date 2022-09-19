@@ -22,7 +22,7 @@ jobs:
             - recursive: true
               args: [--frozen-lockfile]
 
-      - name: Compile TS
+      - name: Compile ts
         run: pnpm compile
 
       - name: Run tests
