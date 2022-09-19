@@ -24,12 +24,12 @@ jobs:
               args: [--frozen-lockfile]
 
       - name: Compile TS
-      - run: pnpm compile
+        run: pnpm compile
 
       - name: Run tests
-      - run: pnpm test
+        run: pnpm test
 
       - name: Publish pkg
-      - run: pnpm publish --access=public --no-git-checks
+        run: pnpm publish --access=public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
