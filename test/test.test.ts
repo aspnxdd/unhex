@@ -17,7 +17,7 @@ describe("test parsing files", () => {
       ignoredFilesAndPaths: "node_modules, .git, test.test.ts",
     };
     const res = readDir("test", false, config)[0];
-    const match1 = `color: "rgb(0, 0, 0)";`;
+    const match1 = `color: "rgb(21, 0, 0)";`;
     const match2 = `background-color: "rgb(0, 0, 0)";`;
     expect(res).include(match1);
     expect(res).include(match2);
