@@ -1,6 +1,7 @@
+import type { Config, Direction } from "./types";
+
 import fs from "fs";
 import { join } from "path";
-import type { Config, Direction } from "./types";
 import inquirer from "inquirer";
 import chalk from "chalk";
 

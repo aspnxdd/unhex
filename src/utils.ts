@@ -1,18 +1,22 @@
-export function hexToRGB3(hex: string): string {
+function hexToRgb3(hex: string): string {
   const r = parseInt(hex.slice(1, 2), 16);
   const g = parseInt(hex.slice(2, 3), 16);
   const b = parseInt(hex.slice(3, 4), 16);
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-export function hexToRGB6(hex: string): string {
+function hexToRgb6(hex: string): string {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
   const b = parseInt(hex.slice(5, 7), 16);
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-export function RGBToHex(rgb: string): string {
+export function hexToRgb(hex: string): string {
+  return hex.length === 4 ? hexToRgb3(hex) : hexToRgb6(hex);
+}
+
+export function rgbToHex(rgb: string): string {
   let [r, g, b] = rgb
     .replace("rgb(", "")
     .replace(")", "")
@@ -27,7 +31,7 @@ export function RGBToHex(rgb: string): string {
   return `#${r}${g}${b}`;
 }
 
-export function RGBToHSL(rgb: string): string {
+export function rgbToHsl(rgb: string): string {
   let [r, g, b] = rgb
     .replace("rgb(", "")
     .replace(")", "")
@@ -64,7 +68,7 @@ export function RGBToHSL(rgb: string): string {
   return `hsl(${h}, ${s}%, ${l}%)`;
 }
 
-export function HSLToRGB(hsl: string): string {
+export function hslToRgb(hsl: string): string {
   let [h, s, l] = hsl
     .replace("hsl(", "")
     .replace(")", "")

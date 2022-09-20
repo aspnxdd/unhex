@@ -1,6 +1,6 @@
 {
   "name": "unhex",
-  "version": "0.0.361",
+  "version": "0.0.37",
   "description": "Color converter RGB <--> HEX <--> HSL",
   "keywords": [
     "color",

@@ -1,6 +1,6 @@
 # Unhex 🎨
 
-A NodeJS package to convert any RGB color to HEX color or viceversa. Also supports HSL conversion.
+A NodeJS package to convert any RGB color to HEX, HSL color or viceversa.
 
 ### Example
 
@@ -11,7 +11,7 @@ div {
 }
 ```
 
-After running `npx unhex` with `hexToRgb` direction.
+After running `npx unhex@latest` with `hexToRgb` direction.
 
 ```css
 div {
@@ -23,15 +23,15 @@ div {
 ### Want to try it? 🤔
 
 ```shell
-npx unhex
+npx unhex@latest
 ```
 
 ### Features ✨
 
-- Parse any file on a given directory and convert any RGB color to HEX color or viceversa.
+- Parse any file on a given directory and convert any color to among HSL, HEX and RGB combinations.
 - Custom configuration to:
   - Ignore certain files, dirs...
-  - Define which extensions files to parse (.css, .tsx ...)
+  - Define which extensions files to parse (.css, .jsx, .scss, ...)
 
 ## TO-DO 🚧
 

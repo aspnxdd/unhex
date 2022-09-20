@@ -10,7 +10,7 @@
     "strict": true /* Enable all strict type-checking options. */,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "Node" 
+    "moduleResolution": "Node"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*"]
 }

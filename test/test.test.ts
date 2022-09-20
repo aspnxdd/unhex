@@ -1,13 +1,8 @@
-import { it, describe, expect } from "vitest";
-import { readDir, parseFile } from "../src/index";
 import type { Config } from "./../src/types";
-import {
-  HSLToRGB,
-  RGBToHSL,
-  RGBToHex,
-  hexToRGB3,
-  hexToRGB6,
-} from "./../src/utils";
+
+import { it, describe, expect } from "vitest";
+import { readDir, parseFile } from "./../src/index";
+import { hexToRgb, rgbToHex, hslToRgb, rgbToHsl } from "./../src/utils";
 
 describe("test parsing files", () => {
   it("read dir test", () => {
@@ -95,39 +90,39 @@ describe("test rgb to hex with readDir", () => {
 
 describe("text conversion functions", () => {
   it("hex to rgb", () => {
-    const rgb = hexToRGB3("#000");
+    const rgb = hexToRgb("#000");
     expect(rgb).toBe("rgb(0, 0, 0)");
   });
 
   it("hex to rgb", () => {
-    const rgb = hexToRGB6("#000000");
+    const rgb = hexToRgb("#000000");
     expect(rgb).toBe("rgb(0, 0, 0)");
   });
 
   it("rgb to hex", () => {
-    const hex = RGBToHex("rgb(0, 0, 0)");
+    const hex = rgbToHex("rgb(0, 0, 0)");
     expect(hex).toBe("#000000");
   });
 
   it("rgb to hsl", () => {
-    const hsl = RGBToHSL("rgb(255, 0, 0)");
+    const hsl = rgbToHsl("rgb(255, 0, 0)");
     expect(hsl).toBe("hsl(0, 100%, 50%)");
   });
 
   it("hsl to rgb", () => {
-    const rgb = HSLToRGB("hsl(0, 0%, 0%)");
+    const rgb = hslToRgb("hsl(0, 0%, 0%)");
     expect(rgb).toBe("rgb(0, 0, 0)");
   });
 
   it("hsl to hex", () => {
-    const rgb = HSLToRGB("hsl(0, 0%, 0%)");
-    const hex = RGBToHex(rgb);
+    const rgb = hslToRgb("hsl(0, 0%, 0%)");
+    const hex = rgbToHex(rgb);
     expect(hex).toBe("#000000");
   });
 
   it("hex to hsl", () => {
-    const rgb = hexToRGB3("#000");
-    const hsl = RGBToHSL(rgb);
+    const rgb = hexToRgb("#000");
+    const hsl = rgbToHsl(rgb);
     expect(hsl).toBe("hsl(0, 0%, 0%)");
   });
 });
