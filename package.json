@@ -10,7 +10,7 @@
     "turbo:build": "turbo run build",
     "package:compile": "pnpm --filter package run compile",
     "package:test": "pnpm --filter package run test",
-    "package:publish": "pnpm --filter package run publish",
+    "package:publish": "pnpm --filter package publish",
     "docs:build": "pnpm --filter docs run build"
   },
   "devDependencies": {
