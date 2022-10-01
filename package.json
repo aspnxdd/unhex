@@ -2,6 +2,10 @@
   "name": "unhex",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "packages/*",
+    "docs/*"
+  ],
   "scripts": {
     "turbo:build": "turbo run build",
     "package:compile": "pnpm --filter package run compile",
