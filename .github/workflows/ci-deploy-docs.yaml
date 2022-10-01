@@ -12,16 +12,34 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.2.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
           node-version: 16
-      - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7.1.0
-          run_install: |
-            - recursive: false
-              args: [--no-frozen-lockfile]
+          cache: pnpm
+
+      - name: Configure corepack
+        # Forcibly upgrade our available version of corepack.
+        # The bundled version in node 16 has known issues.
+        # Prepends the npm bin dir so that it is always first.
+        shell: bash
+        run: |
+          npm install --force --global corepack@latest
+          npm config get prefix >> $GITHUB_PATH
+          corepack enable
+      - name: Enable corepack
+        if: ${{ inputs.enable-corepack == 'true' }}
+        shell: bash
+        run: |
+          corepack enable
+      - name: pnpm install
+        shell: bash
+        run: pnpm install
 
       - name: Build
         run: pnpm docs:build
