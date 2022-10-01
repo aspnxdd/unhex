@@ -10,7 +10,7 @@
     "turbo:build": "turbo run build",
     "package:compile": "pnpm --filter unhex run compile",
     "package:test": "pnpm --filter unhex run test",
-    "package:publish": "pnpm --filter unhex publish",
+    "package:publish": "pnpm --filter unhex publish --access=public --no-git-checks",
     "docs:build": "pnpm --filter docs run build"
   },
   "devDependencies": {
