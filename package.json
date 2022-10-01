@@ -8,7 +8,6 @@
     "package:test": "pnpm --filter package run test",
     "package:publish": "pnpm --filter package run publish"
   },
-  "dependencies": {},
   "devDependencies": {
     "turbo": "^1.5.3"
   }

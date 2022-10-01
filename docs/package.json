@@ -1,0 +1,17 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "serve": "vitepress serve docs"
+  },
+  "dependencies": {
+    "vitepress": "^1.0.0-alpha.17",
+    "vue": "^3.2.40"
+  },
+  "author": "",
+  "license": "ISC"
+}
