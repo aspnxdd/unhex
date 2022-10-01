@@ -99,6 +99,16 @@ describe("text conversion functions", () => {
     expect(rgb).toBe("rgb(0, 0, 0)");
   });
 
+  it("hex to rgb", () => {
+    const rgb = hexToRgb("#ffffff");
+    expect(rgb).toBe("rgb(255, 255, 255)");
+  });
+
+  it("hex to rgb", () => {
+    const rgb = hexToRgb("#fff");
+    expect(rgb).toBe("rgb(255, 255, 255)");
+  });
+
   it("rgb to hex", () => {
     const hex = rgbToHex("rgb(0, 0, 0)");
     expect(hex).toBe("#000000");

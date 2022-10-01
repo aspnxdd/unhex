@@ -11,9 +11,11 @@
     "package:compile": "pnpm --filter package run compile",
     "package:test": "pnpm --filter package run test",
     "package:publish": "pnpm --filter package run publish",
-    "docs:build": "pnpm --filter docs run build"
+    "docs:build": "pnpm --filter docs run build",
+    "format": "prettier --write  \"./**/*.{ts,css,md}\""
   },
   "devDependencies": {
-    "turbo": "^1.5.3"
+    "turbo": "^1.5.3",
+    "prettier": "^2.3.2"
   }
 }
