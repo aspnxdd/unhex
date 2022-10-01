@@ -18,9 +18,10 @@ jobs:
           node-version: 16
       - uses: pnpm/action-setup@v2.2.2
         with:
-          version: 6.0.2
+          version: 7.1.0
           run_install: |
-            cwd: docs/
+            - recursive: true
+              args: [--frozen-lockfile]
 
       - name: Build
         run: pnpm docs:build
