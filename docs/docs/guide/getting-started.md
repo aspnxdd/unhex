@@ -1,27 +1,69 @@
-# Unhex 🎨
+# Getting started
 
-A NodeJS package to convert any RGB color to HEX, HSL color or viceversa.
+This section will help you build a basic Unhex configuration from ground up.
 
-### Example 👇
+## Go to your project directory
 
-```css
-main {
-   color: #fff;
-   background-color: #0070f3;
-}
+Go to your prject directory in which you want to standarize all colors format.
+
+```sh
+cd my-app
 ```
 
-After running `npx unhex@latest` with `hexToRgb` direction.
+Then run:
 
-```css
-main {
-   color: rgb(255, 255, 255);
-   background-color: rgb(0, 112, 243);
-}
-```
-
-### Want to try it? 🚀
-
-```shell
+```sh
 npx unhex@latest
 ```
+
+In your CLI, you will get prompted to select which file extensions you want to parse:
+
+> **Note**: All these configurations can be later modified manually.
+
+#### Extensions allowed
+
+```sh
+  *
+  .css
+  .jsx
+  .tsx
+  .scss
+  .svelte
+  .vue
+```
+
+#### Color conversion desired
+
+```sh
+  hexToRgb
+  rgbToHex
+  rgbToHsl
+  hslToRgb
+  hexToHsl
+  hslToHex
+  allToRgb
+```
+
+#### Paths and files to ignore
+
+```sh
+Ignore files/paths (node_modules, .git, .vscode, dist, build, .next, .gitignore)
+```
+
+This will create a `unhex.config.js` file in your project directory.
+
+Example:
+
+```js
+// unhex.config.js
+
+module.exports = {
+   extensionsAllowed: '*',
+   direction: 'hexToRgb',
+   ignoredFilesAndPaths: 'node_modules, .git, .vscode, dist, build, .next, .gitignore',
+}
+```
+
+## What's next?
+
+If you want to run Unhex again, you will get asked if you want to replace your current configuration, just skip it if you want to preserve your current settings.
