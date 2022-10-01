@@ -8,7 +8,11 @@ export default defineConfig({
       sidebar: [
          {
             text: 'Guide',
-            items: [{ text: 'Getting Started', link: '/guide/getting-started' }],
+            items: [
+               { text: 'What is Unhex?', link: '/guide/what-is-unhex' },
+               { text: 'Installation', link: '/guide/installation' },
+               { text: 'Getting Started', link: '/guide/getting-started' },
+            ],
          },
       ],
    },

@@ -14,6 +14,7 @@
     "docs:build": "pnpm --filter docs run build"
   },
   "devDependencies": {
-    "turbo": "^1.5.3"
+    "turbo": "^1.5.3",
+    "prettier": "^2.3.2"
   }
 }
