@@ -6,8 +6,8 @@ A NodeJS package to convert any RGB color to HEX, HSL color or viceversa.
 
 ```css
 div {
-  color: #fff;
-  background-color: #0070f3;
+   color: #fff;
+   background-color: #0070f3;
 }
 ```
 
@@ -15,8 +15,8 @@ After running `npx unhex@latest` with `hexToRgb` direction.
 
 ```css
 div {
-  color: rgb(255, 255, 255);
-  background-color: rgb(0, 112, 243);
+   color: rgb(255, 255, 255);
+   background-color: rgb(0, 112, 243);
 }
 ```
 
@@ -28,14 +28,14 @@ npx unhex@latest
 
 ### Features ✨
 
-- Parse any file on a given directory and convert any color to among HSL, HEX and RGB combinations.
-- Custom configuration to:
-  - Ignore certain files, dirs...
-  - Define which extensions files to parse (.css, .jsx, .scss, ...)
+-  Parse any file on a given directory and convert any color to among HSL, HEX and RGB combinations.
+-  Custom configuration to:
+   -  Ignore certain files, dirs...
+   -  Define which extensions files to parse (.css, .jsx, .scss, ...)
 
 ## TO-DO 🚧
 
-- [X] Support HSL.
-- [ ] Support HWB.
+-  [x] Support HSL.
+-  [ ] Support HWB.
 
 [MIT License](./LICENSE.md)

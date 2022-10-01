@@ -21,5 +21,5 @@ features:
    - title: 'Convert any color'
      details: Parse any file on a given directory and convert any color to among HSL, HEX and RGB combinations.
    - title: 'Standarize all the colors to one format'
-     details: You can customize to convert certain colors to a specific format, or all colors to a single format. 
+     details: You can customize to convert certain colors to a specific format, or all colors to a single format.
 ---
