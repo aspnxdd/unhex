@@ -2,7 +2,7 @@
 
 A NodeJS package to convert any RGB color to HEX, HSL color or viceversa.
 
-### Example
+### Example 👇
 
 ```css
 main {
