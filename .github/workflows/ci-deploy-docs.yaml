@@ -18,6 +18,8 @@ jobs:
           node-version: 16
       - name: Install pnpm
         uses: pnpm/action-setup@v2
+        with:
+          version: 6.0.2
 
       - name: Set node
         uses: actions/setup-node@v3
