@@ -16,8 +16,8 @@ jobs:
           run_install: true
 
       - name: Compile ts
-        run: pnpm compile
+        run: pnpm package:compile
 
       - name: Run tests
-        run: pnpm test
+        run: pnpm package:test
     

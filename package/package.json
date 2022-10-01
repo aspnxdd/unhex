@@ -1,0 +1,43 @@
+{
+  "name": "unhex",
+  "version": "0.0.37",
+  "description": "Color converter RGB <--> HEX <--> HSL",
+  "keywords": [
+    "color",
+    "parser",
+    "converter",
+    "rgb",
+    "hex",
+    "hsl"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/aspnxdd/unhex.git"
+  },
+  "bugs": {
+    "url": "http://github.com/aspnxdd/unhex.git/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/src/index.js",
+  "scripts": {
+    "test": "npx vitest",
+    "start": "tsc --build tsconfig.json && node dist/src/index.js",
+    "cli": "tsc --build tsconfig.json && node dist/src/cli.js",
+    "compile": "tsc --build tsconfig.json"
+  },
+  "author": "Arnau Espin <arnauespin@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/inquirer": "^9.0.1",
+    "@types/node": "^18.7.18",
+    "typescript": "^4.8.3",
+    "vitest": "0.23.2"
+  },
+  "bin": "dist/src/index.js",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "inquirer": "^8.0.0"
+  }
+}
