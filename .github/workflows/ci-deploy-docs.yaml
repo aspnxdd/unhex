@@ -16,24 +16,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 6.0.2
-
-      - name: Set node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-
-      - name: Install
-        run: pnpm i
-
-      - name: Build
-        run: pnpm run docs:build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: BetaHuhn/deploy-to-vercel-action@v1
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: docs/docs/.vitepress/dist
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID_BACKOFFICE }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_BACKOFFICE }}
+          PRODUCTION: true
