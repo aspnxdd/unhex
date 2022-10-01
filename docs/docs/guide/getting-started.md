@@ -20,7 +20,7 @@ main {
 }
 ```
 
-### Want to try it? 🤔
+### Want to try it? 🚀
 
 ```shell
 npx unhex@latest
