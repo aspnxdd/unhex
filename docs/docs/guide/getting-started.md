@@ -5,7 +5,7 @@ A NodeJS package to convert any RGB color to HEX, HSL color or viceversa.
 ### Example
 
 ```css
-div {
+main {
    color: #fff;
    background-color: #0070f3;
 }
@@ -14,7 +14,7 @@ div {
 After running `npx unhex@latest` with `hexToRgb` direction.
 
 ```css
-div {
+main {
    color: rgb(255, 255, 255);
    background-color: rgb(0, 112, 243);
 }
