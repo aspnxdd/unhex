@@ -1,5 +1,8 @@
 name: CI - PR main
-on: [pull_request]
+on:
+  pull_request:
+    paths:
+      - "package/**"
 
 jobs:
   run-test:
@@ -20,4 +23,3 @@ jobs:
 
       - name: Run tests
         run: pnpm package:test
-    

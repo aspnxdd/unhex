@@ -1,8 +1,11 @@
 name: CI - NPM Publish
+
 on:
   push:
     tags:
       - v*
+    paths:
+      - "package/**"
 
 jobs:
   publish-npm:
